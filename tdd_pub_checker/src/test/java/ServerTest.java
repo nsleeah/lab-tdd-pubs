@@ -51,4 +51,13 @@ public class ServerTest {
         assertThat(server.canServeGuest(underAgeGuest)).isFalse();
         assertThat(server.canServeGuest(legalAgeGuest)).isTrue();
     }
+
+    // TODO: test that guest can only get served if guest can pay in local currency (add £ char as currency)
+    @Test
+    public void testGuestLocalCurrency() {
+        Guest underAgeGuest = new Guest("Adam", 16, 7, 65, false, '$');
+        Guest legalAgeGuest = new Guest("Joe", 20, 60, 60, false, '£');
+        assertThat(server.canServeGuest(underAgeGuest)).isFalse();
+        assertThat(server.canServeGuest(legalAgeGuest)).isTrue();
+    }
 }
