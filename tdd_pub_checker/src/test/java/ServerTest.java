@@ -24,4 +24,13 @@ public class ServerTest {
         assertThat(server.canServeGuest(underAgeGuest)).isFalse();
         assertThat(server.canServeGuest(legalAgeGuest)).isTrue();
     }
+
+    // TODO: test that guest can only get served if has enough money to buy a drink (every drink is £5)
+    @Test
+    public void testGuestEnoughMoney() {
+        Guest underAgeGuest = new Guest("Adam", 16, 7, 65, false, '£');
+        Guest legalAgeGuest = new Guest("Joe", 20, 60, 70, false, '£');
+        assertThat(server.canServeGuest(underAgeGuest)).isFalse();
+        assertThat(server.canServeGuest(legalAgeGuest)).isTrue();
+    }
 }
