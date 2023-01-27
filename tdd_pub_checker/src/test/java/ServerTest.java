@@ -33,4 +33,22 @@ public class ServerTest {
         assertThat(server.canServeGuest(underAgeGuest)).isFalse();
         assertThat(server.canServeGuest(legalAgeGuest)).isTrue();
     }
+
+    // TODO: test that guest can only get served if sober enough (set sobriety level on guest)
+    @Test
+    public void testSoberEnough() {
+        Guest underAgeGuest = new Guest("Adam", 16, 7, 65, false, '£');
+        Guest legalAgeGuest = new Guest("Joe", 20, 60, 60, false, '£');
+        assertThat(server.canServeGuest(underAgeGuest)).isFalse();
+        assertThat(server.canServeGuest(legalAgeGuest)).isTrue();
+    }
+
+    // TODO: test that guest can only get served if guest is not banned from the pub
+    @Test
+    public void testBannedFromPub() {
+        Guest underAgeGuest = new Guest("Adam", 16, 7, 65, true, '£');
+        Guest legalAgeGuest = new Guest("Joe", 20, 60, 60, false, '£');
+        assertThat(server.canServeGuest(underAgeGuest)).isFalse();
+        assertThat(server.canServeGuest(legalAgeGuest)).isTrue();
+    }
 }
